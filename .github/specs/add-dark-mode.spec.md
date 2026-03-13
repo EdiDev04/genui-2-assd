@@ -1,6 +1,6 @@
 ---
 id: SPEC-001
-status: DRAFT
+status: IN_PROGRESS
 feature: add-dark-mode
 created: 2026-03-13
 updated: 2026-03-13
@@ -11,7 +11,7 @@ related-specs: []
 
 # Spec: Dark Mode Implementation for Chat
 
-> **Estado:** `DRAFT` → aprobar con `status: APPROVED` antes de iniciar implementación.
+> **Estado:** `IN_PROGRESS`
 > **Ciclo de vida:** DRAFT → APPROVED → IN_PROGRESS → IMPLEMENTED → DEPRECATED
 
 ---

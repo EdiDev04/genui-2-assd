@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
 import { useFileSystem } from "@/lib/contexts/file-system-context";
+import { useTheme } from "@/hooks/use-theme";
 import { Code2 } from "lucide-react";
 
 export function CodeEditor() {
   const { selectedFile, getFileContent, updateFile } = useFileSystem();
+  const { theme } = useTheme();
   const editorRef = useRef<any>(null);
 
   const handleEditorDidMount = (editor: any) => {
@@ -43,13 +45,13 @@ export function CodeEditor() {
 
   if (!selectedFile) {
     return (
-      <div className="h-full flex items-center justify-center bg-gray-900">
+      <div className="h-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900">
         <div className="text-center">
-          <Code2 className="h-12 w-12 text-gray-600 mx-auto mb-3" />
-          <p className="text-sm text-gray-500">
+          <Code2 className="h-12 w-12 text-neutral-400 dark:text-neutral-600 mx-auto mb-3" />
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             Select a file to edit
           </p>
-          <p className="text-xs text-gray-600 mt-1">
+          <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-1">
             Choose a file from the file tree
           </p>
         </div>
@@ -67,7 +69,7 @@ export function CodeEditor() {
       value={content}
       onChange={handleEditorChange}
       onMount={handleEditorDidMount}
-      theme="vs-dark"
+      theme={theme === "dark" ? "vs-dark" : "vs"}
       options={{
         minimap: { enabled: false },
         fontSize: 14,
