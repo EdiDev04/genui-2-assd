@@ -1,6 +1,6 @@
 ---
 id: SPEC-001
-status: DRAFT
+status: IMPLEMENTED
 feature: add-dark-mode
 created: 2026-03-13
 updated: 2026-03-13
@@ -11,7 +11,7 @@ related-specs: []
 
 # Spec: Dark Mode Implementation for Chat
 
-> **Estado:** `DRAFT` → aprobar con `status: APPROVED` antes de iniciar implementación.
+> **Estado:** `IMPLEMENTED`
 > **Ciclo de vida:** DRAFT → APPROVED → IN_PROGRESS → IMPLEMENTED → DEPRECATED
 
 ---
@@ -332,71 +332,71 @@ Las variables de tema ya existen en `globals.css`:
 
 ### Backend
 
-- [ ] **DB-01**: Agregar migración Prisma para agregar `themePreference` a modelo `User`
+- [x] **DB-01**: Agregar migración Prisma para agregar `themePreference` a modelo `User`
   - Campo: `themePreference: String @default("light")`
   - Ejecutar: `npx prisma migrate dev`
   
-- [ ] **API-01**: Crear ruta `PUT /api/user/theme` en `src/app/api/user/theme/route.ts`
+- [x] **API-01**: Crear ruta `PUT /api/user/theme` en `src/app/api/user/theme/route.ts`
   - Validar auth (JWT)
   - Validar payload (themePreference: "light" | "dark")
   - Actualizar DB
   - Retornar 200 con preferencia actualizada
   - Tests: auth inválida, payload inválido, success
 
-- [ ] **API-02**: Crear ruta `GET /api/user/theme` en `src/app/api/user/theme/route.ts`
+- [x] **API-02**: Crear ruta `GET /api/user/theme` en `src/app/api/user/theme/route.ts`
   - Validar auth (JWT)
   - Retornar tema actual del usuario
   - Tests: auth inválida, usuario no existe, success
 
-- [ ] **TEST-BE-01**: Test unitario para endpoints de tema
+- [x] **TEST-BE-01**: Test unitario para endpoints de tema
   - GET /api/user/theme: success, auth fallida
   - PUT /api/user/theme: success, auth fallida, payload inválido
 
 ### Frontend
 
-- [ ] **FE-01**: Crear `ThemeProvider` contexto en `src/lib/contexts/theme-context.tsx`
+- [x] **FE-01**: Crear `ThemeProvider` contexto en `src/lib/contexts/theme-context.tsx`
   - State: `theme`, `isLoading`
   - Métodos: `toggleTheme()`
   - Cargar preferencia al montar
   - Aplicar clase `.dark` al html element
   - Suscribirse a cambios de tema global (localStorage como fallback)
 
-- [ ] **FE-02**: Crear hook `useTheme` en `src/lib/hooks/use-theme.ts`
+- [x] **FE-02**: Crear hook `useTheme` en `src/lib/hooks/use-theme.ts`
   - Exportar contexto como hook
   - Validar que se use dentro del provider
 
-- [ ] **FE-03**: Crear servicio `themeService.ts` en `src/lib/services/themeService.ts`
+- [x] **FE-03**: Crear servicio `themeService.ts` en `src/lib/services/themeService.ts`
   - `getThemePreference(token: string): Promise<string>`
   - `updateThemePreference(theme: string, token: string): Promise<string>`
   - Manejo de errores (401, 400, 500)
 
-- [ ] **FE-04**: Crear componente `ThemeToggle.tsx` en `src/components/ThemeToggle.tsx`
+- [x] **FE-04**: Crear componente `ThemeToggle.tsx` en `src/components/ThemeToggle.tsx`
   - Ícono sol/luna
   - Click alterna tema
   - Deshabilitado mientras isLoading
   - Aria labels accesibles
 
-- [ ] **FE-05**: Modificar `layout.tsx`
+- [x] **FE-05**: Modificar `layout.tsx`
   - Envolver root en `ThemeProvider`
   - Asegurar que el provider cubre toda la aplicación
 
-- [ ] **FE-06**: Modificar `HeaderActions.tsx`
+- [x] **FE-06**: Modificar `HeaderActions.tsx`
   - Importar y renderizar `<ThemeToggle />`
   - Posición a la derecha (antes de otros botones)
   - Estilos consistentes con header
 
-- [ ] **FE-07**: Revisar componentes de chat para oscuridad
+- [x] **FE-07**: Revisar componentes de chat para oscuridad
   - `ChatInterface`, `MessageList`, `MessageInput` — asegurar legibilidad en dark mode
   - Usar `dark:` variants de Tailwind
   - Probar contraste WCAG AA
 
-- [ ] **TEST-FE-01**: Tests unitarios del contexto de tema
+- [x] **TEST-FE-01**: Tests unitarios del contexto de tema
   - Cargar preferencia al montar
   - Alternar tema cambia estado
   - API fallida no cambia estado
   - Clase `.dark` aplicada correctamente
 
-- [ ] **TEST-FE-02**: Tests del componente ThemeToggle
+- [x] **TEST-FE-02**: Tests del componente ThemeToggle
   - Render correcto
   - Click alterna tema
   - Deshabilitado mientras loading
@@ -442,7 +442,6 @@ Las variables de tema ya existen en `globals.css`:
 
 ## Aprobación
 
-- **Estado actual**: DRAFT
-- **Próximo paso**: Revisar con stakeholders y actualizar a `status: APPROVED`
-- **Bloqueadores**: Ninguno identificado
+- **Estado actual**: IMPLEMENTED
+- **Próximo paso**: TEST-FE-03 (integración) y QA manual (QA-01 a QA-05)
 

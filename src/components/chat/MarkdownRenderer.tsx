@@ -23,7 +23,7 @@ export function MarkdownRenderer({
             if (isInline) {
               return (
                 <code
-                  className="not-prose text-sm px-1 py-0.5 rounded-sm bg-neutral-100 text-neutral-900 font-mono"
+                  className="not-prose text-sm px-1 py-0.5 rounded-sm bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 font-mono"
                   {...props}
                 >
                   {children}
