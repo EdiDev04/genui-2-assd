@@ -55,7 +55,7 @@ export function MainContent({ user, project }: MainContentProps) {
 
             <ResizableHandle className="w-[1px] bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 transition-colors" />
 
-            {/* Right Panel - Preview/Code */
+            {/* Right Panel - Preview/Code */}
             <ResizablePanel defaultSize={65}>
               <div className="h-full flex flex-col bg-white dark:bg-neutral-900">
                 {/* Top Bar */}
@@ -98,7 +98,7 @@ export function MainContent({ user, project }: MainContentProps) {
 
                       <ResizableHandle className="w-[1px] bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 transition-colors" />
 
-                      {/* Code Editor */
+                      {/* Code Editor */}
                       <ResizablePanel defaultSize={70}>
                         <div className="h-full bg-white dark:bg-neutral-900">
                           <CodeEditor />
